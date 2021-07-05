@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import axios from "axios";
-
+import { Link } from 'react-router-dom';
 export default function Form() {
 
   const [formState, setFormState] = useState({
@@ -131,9 +131,9 @@ export default function Form() {
 
 
   useEffect(() => {
-    formSchema.isValid(formState).then((isValid) => {
+    formSchema.isValid(formState).then((Valid) => {
 
-      setButtonDisabled(!isValid);
+      setButtonDisabled(!Valid);
     });
   }, [formState]);
 
@@ -264,10 +264,9 @@ export default function Form() {
         />
       </label>
 
-      <button disabled={buttonDisabled} type="order">
+      <Link to="./confirmation"><button disabled={buttonDisabled} type="order">
         Order
-      </button>
-      <pre>{JSON.stringify(post, null, 2)}</pre>
+      </button></Link>
       <button data-cy="submit" disabled={buttonDisabled}>
       </button>
     </form>
